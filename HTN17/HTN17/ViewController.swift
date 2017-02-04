@@ -68,6 +68,53 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         
+        if indexPath.row >= 0 {
+            
+            cell.skillStackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            for (_, view) in cell.skillStackView.subviews.enumerated().reversed() {
+                cell.skillStackView.removeArrangedSubview(view)
+                view.removeFromSuperview()
+            }
+            
+            if let hackerData = hackerData {
+                for (_, json) in hackerData[indexPath.row]["skills"] {
+                    let l1 = UILabel()
+                    l1.numberOfLines = 1
+                    l1.text = json["name"].string
+                    l1.textAlignment = .center
+                    l1.widthAnchor.constraint(equalToConstant: l1.intrinsicContentSize.width).isActive = true
+                    l1.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
+                    l1.translatesAutoresizingMaskIntoConstraints = false
+                    cell.skillStackView.addArrangedSubview(l1)
+                    
+                    let l2 = UILabel()
+                    l2.numberOfLines = 1
+                    l2.text = json["rating"].stringValue
+                    l2.textColor = UIColor.white
+                    l2.backgroundColor = UIColor(red: 0, green: 54/255.0, blue: 191/255.0, alpha: 1)
+                    l2.layer.cornerRadius = 2
+                    l2.layer.masksToBounds = true
+                    l2.textAlignment = .center
+                    l2.widthAnchor.constraint(equalToConstant: json["rating"].stringValue.widthWithConstrainedHeight(height: cell.skillStackView.frame.height)).isActive = true
+                    l2.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
+                    l2.translatesAutoresizingMaskIntoConstraints = false
+                    cell.skillStackView.addArrangedSubview(l2)
+                }
+            }
+            
+            // To push subviews of stack view to left
+            let blankView = UIView()
+            blankView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            blankView.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
+            blankView.translatesAutoresizingMaskIntoConstraints = false
+            cell.skillStackView.addArrangedSubview(blankView)
+            
+            
+            
+            
+        }
+        
         return cell
     }
     
@@ -81,3 +128,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 }
 
+// http://stackoverflow.com/questions/30450434/figure-out-size-of-uilabel-based-on-string-in-swift
+extension String {
+    func heightWithConstrainedWidth(width: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+        
+        return boundingBox.height
+    }
+    
+    func widthWithConstrainedHeight(height: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+        
+        return boundingBox.width + 10
+    }
+}
