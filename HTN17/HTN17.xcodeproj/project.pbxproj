@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090498B257CE743C4E6F1533 /* Pods_HTN17.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE0ABAF18F78FC25EDB075 /* Pods_HTN17.framework */; };
 		18ED2A1A1E45790000CE2054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A191E45790000CE2054 /* AppDelegate.swift */; };
 		18ED2A1C1E45790000CE2054 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A1B1E45790000CE2054 /* ViewController.swift */; };
 		18ED2A1F1E45790000CE2054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18ED2A1D1E45790000CE2054 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		017E3A75C212A8ABBF0A17FC /* Pods-HTN17.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTN17.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTN17/Pods-HTN17.release.xcconfig"; sourceTree = "<group>"; };
 		18ED2A161E45790000CE2054 /* HTN17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTN17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED2A191E45790000CE2054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18ED2A1B1E45790000CE2054 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		18ED2A201E45790000CE2054 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18ED2A231E45790000CE2054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18ED2A251E45790000CE2054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52DE0ABAF18F78FC25EDB075 /* Pods_HTN17.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTN17.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC02D95E33FD863AB549D30F /* Pods-HTN17.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTN17.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTN17/Pods-HTN17.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090498B257CE743C4E6F1533 /* Pods_HTN17.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				18ED2A181E45790000CE2054 /* HTN17 */,
 				18ED2A171E45790000CE2054 /* Products */,
+				8F141380D8D998F7401067AA /* Pods */,
+				D606325A459A108D085B3A7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = HTN17;
 			sourceTree = "<group>";
 		};
+		8F141380D8D998F7401067AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FC02D95E33FD863AB549D30F /* Pods-HTN17.debug.xcconfig */,
+				017E3A75C212A8ABBF0A17FC /* Pods-HTN17.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D606325A459A108D085B3A7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52DE0ABAF18F78FC25EDB075 /* Pods_HTN17.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18ED2A281E45790000CE2054 /* Build configuration list for PBXNativeTarget "HTN17" */;
 			buildPhases = (
+				4404AAB0F76375AA985ACC2B /* [CP] Check Pods Manifest.lock */,
 				18ED2A121E45790000CE2054 /* Sources */,
 				18ED2A131E45790000CE2054 /* Frameworks */,
 				18ED2A141E45790000CE2054 /* Resources */,
+				CFE79310AADDE81F680B3D07 /* [CP] Embed Pods Frameworks */,
+				7DCCB763B176BF9ABDC55B25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4404AAB0F76375AA985ACC2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7DCCB763B176BF9ABDC55B25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTN17/Pods-HTN17-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFE79310AADDE81F680B3D07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTN17/Pods-HTN17-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18ED2A121E45790000CE2054 /* Sources */ = {
@@ -257,6 +332,7 @@
 		};
 		18ED2A291E45790000CE2054 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC02D95E33FD863AB549D30F /* Pods-HTN17.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZET9SZ3EH2;
@@ -270,6 +346,7 @@
 		};
 		18ED2A2A1E45790000CE2054 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 017E3A75C212A8ABBF0A17FC /* Pods-HTN17.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZET9SZ3EH2;
