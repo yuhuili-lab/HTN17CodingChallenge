@@ -33,10 +33,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
         
         hackerTable.register(UINib(nibName: "HackerCell", bundle: nil), forCellReuseIdentifier: "HackerCellIdentifier")
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) { 
-            print (SkillsManager.sharedInstance.numberOfSKills())
-        }
     }
 
     override func didReceiveMemoryWarning() {

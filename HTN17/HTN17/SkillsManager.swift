@@ -12,6 +12,10 @@ class SkillsManager: NSObject {
     private var skills = [String:UIColor]()
     static let sharedInstance = SkillsManager()
     
+    var numberOfSkills:Int {
+        return skills.count
+    }
+    
     override init() {
         super.init()
     }
@@ -28,10 +32,6 @@ class SkillsManager: NSObject {
         skills[skill] = randomColor
         
         return randomColor
-    }
-    
-    func numberOfSKills() -> Int {
-        return skills.count
     }
     
 }
