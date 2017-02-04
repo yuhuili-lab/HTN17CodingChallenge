@@ -10,9 +10,9 @@ import UIKit
 
 class HackerCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var skillStackView: UIStackView!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var arrow: UILabel!
+    @IBOutlet weak var skillsView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

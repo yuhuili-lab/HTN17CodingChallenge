@@ -12,7 +12,7 @@ import SDWebImage
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var dm : DataManager?
-    var hackerData : JSON?
+    var hackerDataArray : [JSON]?
     @IBOutlet weak var hackerTable: UITableView!
     
     let HackerCellIdentifier = "HackerCellIdentifier"
@@ -24,7 +24,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         dm = DataManager(remoteURL: "https://htn-interviews.firebaseio.com/users.json")
         dm?.startDownload(completionHandler: { (success, result, error) in
             if success == true {
-                self.hackerData = result
+                let rawArray = result?.arrayValue
+                self.hackerDataArray = rawArray!.sorted(by: self.sortByName)
                 self.hackerTable.reloadData()
             } else {
                 print("fail")
@@ -32,16 +33,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
         
         hackerTable.register(UINib(nibName: "HackerCell", bundle: nil), forCellReuseIdentifier: "HackerCellIdentifier")
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) { 
+            print (SkillsManager.sharedInstance.numberOfSKills())
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    private func sortByName (j1: JSON, j2: JSON) -> Bool {
+        return j1["name"].stringValue < j2["name"].stringValue
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let hackerData = hackerData {
-            return hackerData.count
+        if let hackerDataArray = hackerDataArray {
+            return hackerDataArray.count
         } else {
             return 0
         }
@@ -55,11 +64,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: HackerCellIdentifier, for: indexPath) as! HackerCell
         
-        if let hackerData = hackerData {
-            cell.nameLabel.text = hackerData[indexPath.row]["name"].string
+        if let hackerDataArray = hackerDataArray {
+            cell.nameLabel.text = hackerDataArray[indexPath.row]["name"].string
         }
         
-        if let hackerData = hackerData, let imageUrl = hackerData[indexPath.row]["picture"].string {
+        if let hackerDataArray = hackerDataArray, let imageUrl = hackerDataArray[indexPath.row]["picture"].string {
             // Add some randomization
             if arc4random() % 2 == 0 {
                 cell.icon.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "person1"))
@@ -70,45 +79,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if indexPath.row >= 0 {
             
-            cell.skillStackView.translatesAutoresizingMaskIntoConstraints = false
-            
-            for (_, view) in cell.skillStackView.subviews.enumerated().reversed() {
-                cell.skillStackView.removeArrangedSubview(view)
+            for (_, view) in cell.skillsView.subviews.enumerated().reversed() {
                 view.removeFromSuperview()
             }
             
-            if let hackerData = hackerData {
-                for (_, json) in hackerData[indexPath.row]["skills"] {
+            var xoffset : CGFloat = 0
+            let height = cell.skillsView.frame.height
+            let maxWidth = cell.skillsView.frame.width
+            
+            if let hackerDataArray = hackerDataArray {
+                for (_, json) in hackerDataArray[indexPath.row]["skills"] {
+                    
+                    let l1Width = json["name"].stringValue.widthWithConstrainedHeight(height: height)
+                    let l2Width = max(json["rating"].stringValue.widthWithConstrainedHeight(height: height), height) // Preserve square
+                    
                     let l1 = UILabel()
                     l1.numberOfLines = 1
                     l1.text = json["name"].string
                     l1.textAlignment = .center
-                    l1.widthAnchor.constraint(equalToConstant: l1.intrinsicContentSize.width).isActive = true
-                    l1.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
-                    l1.translatesAutoresizingMaskIntoConstraints = false
-                    cell.skillStackView.addArrangedSubview(l1)
+                    l1.frame = CGRect(x: xoffset, y: 0, width: l1Width, height: height)
+                    l1.widthAnchor.constraint(equalToConstant: l1Width).isActive = true
+                    cell.skillsView.addSubview(l1)
+                    
+                    xoffset += l1Width + 5
                     
                     let l2 = UILabel()
                     l2.numberOfLines = 1
                     l2.text = json["rating"].stringValue
-                    l2.textColor = UIColor.white
-                    l2.backgroundColor = UIColor(red: 0, green: 54/255.0, blue: 191/255.0, alpha: 1)
+                    l2.backgroundColor = SkillsManager.sharedInstance.colorForSkill(skill: json["name"].stringValue)
+                    if l2.backgroundColor!.isLight {
+                        l2.textColor = UIColor.black
+                    } else {
+                        l2.textColor = UIColor.white
+                    }
                     l2.layer.cornerRadius = 2
                     l2.layer.masksToBounds = true
                     l2.textAlignment = .center
-                    l2.widthAnchor.constraint(equalToConstant: json["rating"].stringValue.widthWithConstrainedHeight(height: cell.skillStackView.frame.height)).isActive = true
-                    l2.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
-                    l2.translatesAutoresizingMaskIntoConstraints = false
-                    cell.skillStackView.addArrangedSubview(l2)
+                    l2.font = UIFont.systemFont(ofSize: 14)
+                    
+                    l2.frame = CGRect(x: xoffset, y: 0, width: l2Width, height: height)
+                    l2.widthAnchor.constraint(equalToConstant: l2Width).isActive = true
+                    cell.skillsView.addSubview(l2)
+                    
+                    xoffset += l2Width + 5
+                    
+                    if xoffset > maxWidth - 5 {
+                        l1.removeFromSuperview()
+                        l2.removeFromSuperview()
+                        break
+                    }
                 }
             }
-            
+            /*
             // To push subviews of stack view to left
             let blankView = UIView()
             blankView.widthAnchor.constraint(equalToConstant: 100).isActive = true
             blankView.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
             blankView.translatesAutoresizingMaskIntoConstraints = false
-            cell.skillStackView.addArrangedSubview(blankView)
+            cell.skillStackView.addArrangedSubview(blankView)*/
             
             
             
@@ -120,8 +148,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let details = self.storyboard!.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-        if let hackerData = hackerData {
-            details.hackerData = hackerData[indexPath.row]
+        if let hackerDataArray = hackerDataArray {
+            details.hackerData = hackerDataArray[indexPath.row]
         }
         self.navigationController!.pushViewController(details, animated: true)
     }
@@ -139,8 +167,25 @@ extension String {
     
     func widthWithConstrainedHeight(height: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin], attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 17)], context: nil)
         
-        return boundingBox.width + 10
+        return boundingBox.width
+    }
+}
+
+extension UIColor {
+    var isLight: Bool {
+        let components = self.cgColor.components
+        let c1 = components![0] * 299
+        let c2 = components![1] * 587
+        let c3 = components![2] * 114
+        
+        let brightness = c1 + c2 + c3
+        
+        if brightness < 500 {
+            return false
+        } else {
+            return true
+        }
     }
 }

@@ -32,14 +32,11 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hacker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbv-iK-lNb">
-                        <rect key="frame" x="93.5" y="14" width="276.5" height="26"/>
+                        <rect key="frame" x="93.5" y="14" width="276.5" height="39.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4vw-cz-TMU">
-                        <rect key="frame" x="93.5" y="50" width="276.5" height="25.5"/>
-                    </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbp-4m-2NF">
                         <rect key="frame" x="389" y="34.5" width="11" height="21"/>
                         <constraints>
@@ -50,28 +47,37 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqr-C6-682">
+                        <rect key="frame" x="94" y="53.5" width="276" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="IUW-uj-OkY"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="g6A-N3-rdc" firstAttribute="leading" secondItem="cKa-YF-Hm4" secondAttribute="leading" constant="14" id="BkH-3E-UXI"/>
                     <constraint firstItem="Lbp-4m-2NF" firstAttribute="centerY" secondItem="cKa-YF-Hm4" secondAttribute="centerY" id="M3q-Xv-0Lu"/>
                     <constraint firstItem="Nbv-iK-lNb" firstAttribute="leading" secondItem="g6A-N3-rdc" secondAttribute="trailing" constant="18" id="QY0-Il-8bB"/>
+                    <constraint firstAttribute="bottom" secondItem="Jqr-C6-682" secondAttribute="bottom" constant="16" id="RLP-9s-HIR"/>
+                    <constraint firstItem="Jqr-C6-682" firstAttribute="trailing" secondItem="Lbp-4m-2NF" secondAttribute="trailing" constant="-30" id="Twy-jj-CJI"/>
                     <constraint firstAttribute="bottom" secondItem="g6A-N3-rdc" secondAttribute="bottom" constant="14" id="Ww0-fH-E0F"/>
-                    <constraint firstItem="4vw-cz-TMU" firstAttribute="top" secondItem="Nbv-iK-lNb" secondAttribute="bottom" constant="10" id="Yxp-rN-5t8"/>
+                    <constraint firstItem="Jqr-C6-682" firstAttribute="top" secondItem="Nbv-iK-lNb" secondAttribute="bottom" id="aU0-gt-2zU"/>
                     <constraint firstAttribute="trailing" secondItem="Lbp-4m-2NF" secondAttribute="trailing" constant="14" id="cqq-qL-2Do"/>
-                    <constraint firstItem="4vw-cz-TMU" firstAttribute="height" secondItem="Nbv-iK-lNb" secondAttribute="height" id="g8p-5e-UhZ"/>
+                    <constraint firstItem="Jqr-C6-682" firstAttribute="leading" secondItem="g6A-N3-rdc" secondAttribute="trailing" constant="18.5" id="jKg-Ob-4Fy"/>
                     <constraint firstItem="g6A-N3-rdc" firstAttribute="top" secondItem="cKa-YF-Hm4" secondAttribute="top" constant="14" id="ms8-eg-IXV"/>
-                    <constraint firstAttribute="bottom" secondItem="4vw-cz-TMU" secondAttribute="bottom" constant="14" id="rSA-gc-eSp"/>
-                    <constraint firstItem="4vw-cz-TMU" firstAttribute="trailing" secondItem="Lbp-4m-2NF" secondAttribute="trailing" constant="-30" id="sCt-cb-3Di"/>
                     <constraint firstItem="Nbv-iK-lNb" firstAttribute="trailing" secondItem="Lbp-4m-2NF" secondAttribute="trailing" constant="-30" id="veA-Ff-dR1"/>
                     <constraint firstItem="Nbv-iK-lNb" firstAttribute="top" secondItem="cKa-YF-Hm4" secondAttribute="top" constant="14" id="yYB-54-r6z"/>
-                    <constraint firstItem="4vw-cz-TMU" firstAttribute="leading" secondItem="g6A-N3-rdc" secondAttribute="trailing" constant="18" id="ymt-hu-FTn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="arrow" destination="Lbp-4m-2NF" id="8ky-UQ-I3i"/>
                 <outlet property="icon" destination="g6A-N3-rdc" id="ci7-V8-cKL"/>
                 <outlet property="nameLabel" destination="Nbv-iK-lNb" id="fVv-bc-svg"/>
-                <outlet property="skillStackView" destination="4vw-cz-TMU" id="VWE-21-2q9"/>
+                <outlet property="skillsView" destination="Jqr-C6-682" id="Fd8-Ab-hsr"/>
             </connections>
             <point key="canvasLocation" x="140" y="87"/>
         </tableViewCell>
