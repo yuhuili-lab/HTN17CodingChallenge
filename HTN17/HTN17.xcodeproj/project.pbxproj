@@ -8,15 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		090498B257CE743C4E6F1533 /* Pods_HTN17.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE0ABAF18F78FC25EDB075 /* Pods_HTN17.framework */; };
+		1806133E1E45846F00D49747 /* HackerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1806133D1E45846F00D49747 /* HackerCell.xib */; };
+		180613401E45849A00D49747 /* HackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806133F1E45849A00D49747 /* HackerCell.swift */; };
+		188C3B7D1E458E23001210CE /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C3B7C1E458E23001210CE /* DetailsViewController.swift */; };
+		188C3B7F1E459118001210CE /* BigHackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C3B7E1E459118001210CE /* BigHackerCell.swift */; };
+		188C3B811E459275001210CE /* BigHackerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188C3B801E459275001210CE /* BigHackerCell.xib */; };
 		18ED2A1A1E45790000CE2054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A191E45790000CE2054 /* AppDelegate.swift */; };
 		18ED2A1C1E45790000CE2054 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A1B1E45790000CE2054 /* ViewController.swift */; };
 		18ED2A1F1E45790000CE2054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18ED2A1D1E45790000CE2054 /* Main.storyboard */; };
 		18ED2A211E45790000CE2054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18ED2A201E45790000CE2054 /* Assets.xcassets */; };
 		18ED2A241E45790000CE2054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18ED2A221E45790000CE2054 /* LaunchScreen.storyboard */; };
+		18ED2A2E1E457AE400CE2054 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A2D1E457AE400CE2054 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		017E3A75C212A8ABBF0A17FC /* Pods-HTN17.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTN17.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTN17/Pods-HTN17.release.xcconfig"; sourceTree = "<group>"; };
+		1806133D1E45846F00D49747 /* HackerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HackerCell.xib; sourceTree = "<group>"; };
+		1806133F1E45849A00D49747 /* HackerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerCell.swift; sourceTree = "<group>"; };
+		188C3B7C1E458E23001210CE /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		188C3B7E1E459118001210CE /* BigHackerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigHackerCell.swift; sourceTree = "<group>"; };
+		188C3B801E459275001210CE /* BigHackerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigHackerCell.xib; sourceTree = "<group>"; };
 		18ED2A161E45790000CE2054 /* HTN17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTN17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED2A191E45790000CE2054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18ED2A1B1E45790000CE2054 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +35,7 @@
 		18ED2A201E45790000CE2054 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18ED2A231E45790000CE2054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18ED2A251E45790000CE2054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18ED2A2D1E457AE400CE2054 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		52DE0ABAF18F78FC25EDB075 /* Pods_HTN17.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTN17.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC02D95E33FD863AB549D30F /* Pods-HTN17.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTN17.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTN17/Pods-HTN17.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,10 +75,16 @@
 			children = (
 				18ED2A191E45790000CE2054 /* AppDelegate.swift */,
 				18ED2A1B1E45790000CE2054 /* ViewController.swift */,
+				188C3B7C1E458E23001210CE /* DetailsViewController.swift */,
 				18ED2A1D1E45790000CE2054 /* Main.storyboard */,
 				18ED2A201E45790000CE2054 /* Assets.xcassets */,
 				18ED2A221E45790000CE2054 /* LaunchScreen.storyboard */,
 				18ED2A251E45790000CE2054 /* Info.plist */,
+				18ED2A2D1E457AE400CE2054 /* DataManager.swift */,
+				1806133D1E45846F00D49747 /* HackerCell.xib */,
+				188C3B801E459275001210CE /* BigHackerCell.xib */,
+				1806133F1E45849A00D49747 /* HackerCell.swift */,
+				188C3B7E1E459118001210CE /* BigHackerCell.swift */,
 			);
 			path = HTN17;
 			sourceTree = "<group>";
@@ -152,6 +170,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18ED2A241E45790000CE2054 /* LaunchScreen.storyboard in Resources */,
+				188C3B811E459275001210CE /* BigHackerCell.xib in Resources */,
+				1806133E1E45846F00D49747 /* HackerCell.xib in Resources */,
 				18ED2A211E45790000CE2054 /* Assets.xcassets in Resources */,
 				18ED2A1F1E45790000CE2054 /* Main.storyboard in Resources */,
 			);
@@ -213,7 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				18ED2A1C1E45790000CE2054 /* ViewController.swift in Sources */,
+				180613401E45849A00D49747 /* HackerCell.swift in Sources */,
+				18ED2A2E1E457AE400CE2054 /* DataManager.swift in Sources */,
 				18ED2A1A1E45790000CE2054 /* AppDelegate.swift in Sources */,
+				188C3B7F1E459118001210CE /* BigHackerCell.swift in Sources */,
+				188C3B7D1E458E23001210CE /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +401,7 @@
 				18ED2A2A1E45790000CE2054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
