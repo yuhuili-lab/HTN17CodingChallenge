@@ -34,6 +34,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         hackerTable.register(UINib(nibName: "HackerCell", bundle: nil), forCellReuseIdentifier: "HackerCellIdentifier")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let indexPath = hackerTable.indexPathForSelectedRow {
+            hackerTable.deselectRow(at: indexPath, animated: true)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,11 +107,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     xoffset += l1Width + 5
                     
+                    let skillColor = SkillsManager.sharedInstance.colorForSkill(skill: json["name"].stringValue)
+                    
                     let l2 = UILabel()
                     l2.numberOfLines = 1
                     l2.text = json["rating"].stringValue
-                    l2.backgroundColor = SkillsManager.sharedInstance.colorForSkill(skill: json["name"].stringValue)
-                    if l2.backgroundColor!.isLight {
+                    l2.layer.backgroundColor = skillColor.cgColor
+                    if skillColor.isLight {
                         l2.textColor = UIColor.black
                     } else {
                         l2.textColor = UIColor.white
@@ -126,16 +136,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
-            /*
-            // To push subviews of stack view to left
-            let blankView = UIView()
-            blankView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-            blankView.heightAnchor.constraint(equalToConstant: cell.skillStackView.frame.height).isActive = true
-            blankView.translatesAutoresizingMaskIntoConstraints = false
-            cell.skillStackView.addArrangedSubview(blankView)*/
-            
-            
-            
             
         }
         
