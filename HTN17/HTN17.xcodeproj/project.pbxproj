@@ -79,15 +79,15 @@
 				18ED2A1B1E45790000CE2054 /* ViewController.swift */,
 				188C3B7C1E458E23001210CE /* DetailsViewController.swift */,
 				18ED2A1D1E45790000CE2054 /* Main.storyboard */,
-				18ED2A201E45790000CE2054 /* Assets.xcassets */,
-				18ED2A221E45790000CE2054 /* LaunchScreen.storyboard */,
-				18ED2A251E45790000CE2054 /* Info.plist */,
-				18ED2A2D1E457AE400CE2054 /* DataManager.swift */,
 				1806133D1E45846F00D49747 /* HackerCell.xib */,
 				188C3B801E459275001210CE /* BigHackerCell.xib */,
 				1806133F1E45849A00D49747 /* HackerCell.swift */,
 				188C3B7E1E459118001210CE /* BigHackerCell.swift */,
+				18ED2A2D1E457AE400CE2054 /* DataManager.swift */,
 				188C3B821E465907001210CE /* SkillsManager.swift */,
+				18ED2A201E45790000CE2054 /* Assets.xcassets */,
+				18ED2A221E45790000CE2054 /* LaunchScreen.storyboard */,
+				18ED2A251E45790000CE2054 /* Info.plist */,
 			);
 			path = HTN17;
 			sourceTree = "<group>";
