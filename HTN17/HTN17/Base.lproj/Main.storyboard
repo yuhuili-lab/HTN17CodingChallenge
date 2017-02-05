@@ -46,12 +46,60 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="LMP-vW-KaA"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vw3-T8-13g">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-l9-FMx">
+                                        <rect key="frame" x="8" y="323" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="LQb-pX-SaB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZc-VL-uDF">
+                                        <rect key="frame" x="165" y="352" width="45" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="91E-UG-6PS"/>
+                                            <constraint firstAttribute="height" constant="30" id="kyX-1v-IqZ"/>
+                                        </constraints>
+                                        <state key="normal" title="Retry"/>
+                                        <connections>
+                                            <action selector="retry:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cco-9X-Juq"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-wx-WiF">
+                                        <rect key="frame" x="169" y="271" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="69S-jh-ddn"/>
+                                            <constraint firstAttribute="width" constant="37" id="WlQ-a5-zUc"/>
+                                        </constraints>
+                                        <color key="color" red="0.1647058824" green="0.32156862749999998" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CFA-l9-FMx" secondAttribute="trailing" constant="8" id="3ap-aa-cDS"/>
+                                    <constraint firstItem="kZc-VL-uDF" firstAttribute="centerX" secondItem="Vw3-T8-13g" secondAttribute="centerX" id="7zX-VW-Ap4"/>
+                                    <constraint firstItem="CFA-l9-FMx" firstAttribute="centerX" secondItem="Vw3-T8-13g" secondAttribute="centerX" id="CIJ-fd-5Gw"/>
+                                    <constraint firstItem="A8F-wx-WiF" firstAttribute="centerX" secondItem="Vw3-T8-13g" secondAttribute="centerX" id="Eah-id-PWl"/>
+                                    <constraint firstItem="CFA-l9-FMx" firstAttribute="top" secondItem="A8F-wx-WiF" secondAttribute="bottom" constant="15" id="SZE-oU-PCc"/>
+                                    <constraint firstItem="CFA-l9-FMx" firstAttribute="centerY" secondItem="Vw3-T8-13g" secondAttribute="centerY" id="dVo-nQ-9eE"/>
+                                    <constraint firstItem="CFA-l9-FMx" firstAttribute="leading" secondItem="Vw3-T8-13g" secondAttribute="leading" constant="8" id="kkM-F9-Cvw"/>
+                                    <constraint firstItem="kZc-VL-uDF" firstAttribute="top" secondItem="CFA-l9-FMx" secondAttribute="bottom" constant="8" id="wGL-FS-oBy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Vw3-T8-13g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0cB-tn-TQm"/>
+                            <constraint firstAttribute="trailing" secondItem="Vw3-T8-13g" secondAttribute="trailing" id="BGa-Pj-Kgo"/>
                             <constraint firstItem="wDP-e7-Vdv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DFU-Xh-lYL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Vw3-T8-13g" secondAttribute="bottom" id="kk6-GP-y2G"/>
                             <constraint firstAttribute="trailing" secondItem="wDP-e7-Vdv" secondAttribute="trailing" id="nuF-oC-cmW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wDP-e7-Vdv" secondAttribute="bottom" id="u79-Bl-CH0"/>
+                            <constraint firstItem="Vw3-T8-13g" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="w9z-J4-2uK"/>
                             <constraint firstItem="wDP-e7-Vdv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zh6-bO-JsO"/>
                         </constraints>
                     </view>
@@ -59,7 +107,11 @@
                         <barButtonItem key="backBarButtonItem" title="All Users" id="0bb-pv-9wR"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="A8F-wx-WiF" id="03n-4I-TQK"/>
                         <outlet property="hackerTable" destination="wDP-e7-Vdv" id="ut2-PN-sQK"/>
+                        <outlet property="overlayView" destination="Vw3-T8-13g" id="kzO-9G-pxN"/>
+                        <outlet property="retryButton" destination="kZc-VL-uDF" id="1l1-Lw-e5x"/>
+                        <outlet property="statusLabel" destination="CFA-l9-FMx" id="v8I-uv-bN9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

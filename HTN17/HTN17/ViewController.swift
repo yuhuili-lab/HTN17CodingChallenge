@@ -15,11 +15,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var hackerDataArray : [JSON]?
     @IBOutlet weak var hackerTable: UITableView!
     
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
     let HackerCellIdentifier = "HackerCellIdentifier"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
         
         dm = DataManager(remoteURL: "https://htn-interviews.firebaseio.com/users.json")
         dm?.startDownload(completionHandler: { (success, result, error) in
@@ -27,8 +36,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let rawArray = result?.arrayValue
                 self.hackerDataArray = rawArray!.sorted(by: self.sortByName)
                 self.hackerTable.reloadData()
+                self.overlayView.isHidden = true
             } else {
                 print("fail")
+                self.overlayView.isHidden = false
+                self.retryButton.isHidden = false
+                self.statusLabel.text = "Data failed to load"
+                self.activityIndicator.isHidden = true
             }
         })
         
@@ -148,6 +162,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             details.hackerData = hackerDataArray[indexPath.row]
         }
         self.navigationController!.pushViewController(details, animated: true)
+    }
+    
+    @IBAction func retry(_ sender: UIButton) {
+        self.retryButton.isHidden = true
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        self.statusLabel.text = "Loading..."
+        dm?.startDownload(completionHandler: { (success, result, error) in
+            if success == true {
+                let rawArray = result?.arrayValue
+                self.hackerDataArray = rawArray!.sorted(by: self.sortByName)
+                self.hackerTable.reloadData()
+                self.overlayView.isHidden = true
+            } else {
+                print("fail")
+                self.overlayView.isHidden = false
+                self.retryButton.isHidden = false
+                self.statusLabel.text = "Data failed to load"
+                self.activityIndicator.isHidden = true
+            }
+        })
     }
 
 }
