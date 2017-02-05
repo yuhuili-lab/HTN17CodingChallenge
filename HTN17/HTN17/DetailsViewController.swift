@@ -9,6 +9,11 @@
 import UIKit
 import SwiftyJSON
 
+let skillHeight : CGFloat = 20
+let skillSeparation : CGFloat = 5
+let skillXOffset : CGFloat = 20
+let skillPaddingTop : CGFloat = 10
+
 class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var detailsTable: UITableView!
@@ -16,6 +21,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var hackerData : JSON?
     let HackerCellIdentifier = "DetailsHackerCellIdentifier"
     let HackerDetailIdentifier = "DetailsHackerItemIdentifier"
+    let HackerSkillsCell = "HackerSkillsCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +62,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
             return cell
-        } else if indexPath.section < 4 {
+        } else if indexPath.section < 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: HackerDetailIdentifier)
             
             if let hackerData = hackerData {
@@ -72,6 +78,58 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             return cell!
+        } else if indexPath.section == 3 {
+            
+            var yoffset : CGFloat = skillPaddingTop
+            
+            if let cell = tableView.dequeueReusableCell(withIdentifier: HackerSkillsCell), let hackerData = hackerData {
+                
+                for subview in cell.subviews.enumerated().reversed() {
+                    if let s = subview.element as? UILabel {
+                        s.removeFromSuperview()
+                    }
+                }
+                
+                for (_, json) in hackerData["skills"] {
+                    
+                    let l1Width = json["name"].stringValue.widthWithConstrainedHeight(height: skillHeight)
+                    let l2Width = max(json["rating"].stringValue.widthWithConstrainedHeight(height: skillHeight), skillHeight) // Preserve square
+                    
+                    let l1 = UILabel()
+                    l1.numberOfLines = 1
+                    l1.text = json["name"].string
+                    l1.textAlignment = .center
+                    l1.frame = CGRect(x: skillXOffset, y: yoffset, width: l1Width, height: skillHeight)
+                    l1.widthAnchor.constraint(equalToConstant: l1Width).isActive = true
+                    cell.addSubview(l1)
+                    
+                    
+                    
+                    let skillColor = SkillsManager.sharedInstance.colorForSkill(skill: json["name"].stringValue)
+                    
+                    let l2 = UILabel()
+                    l2.numberOfLines = 1
+                    l2.text = json["rating"].stringValue
+                    l2.layer.backgroundColor = skillColor.cgColor
+                    if skillColor.isLight {
+                        l2.textColor = UIColor.black
+                    } else {
+                        l2.textColor = UIColor.white
+                    }
+                    l2.layer.cornerRadius = 2
+                    l2.layer.masksToBounds = true
+                    l2.textAlignment = .center
+                    l2.font = UIFont.systemFont(ofSize: 14)
+                    
+                    l2.frame = CGRect(x: skillXOffset+l1Width+5, y: yoffset, width: l2Width, height: skillHeight)
+                    l2.widthAnchor.constraint(equalToConstant: l2Width).isActive = true
+                    cell.addSubview(l2)
+                    
+                    yoffset += 25
+                }
+                
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -121,8 +179,14 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 120
-        } else if indexPath.section < 4 {
+        } else if indexPath.section < 3 {
             return 30
+        } else if indexPath.section == 3 {
+            if let hackerData = hackerData {
+                return CGFloat(hackerData["skills"].count) * (skillSeparation + skillHeight) + skillPaddingTop
+            } else {
+                return 0
+            }
         }
         return 0
     }
