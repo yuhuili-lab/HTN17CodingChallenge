@@ -8,11 +8,14 @@
 
 import UIKit
 import SwiftyJSON
+import MapKit
 
 let skillHeight : CGFloat = 20
 let skillSeparation : CGFloat = 5
 let skillXOffset : CGFloat = 20
 let skillPaddingTop : CGFloat = 10
+
+let regionRadius : Double = 1000000 // Test data geolocation is bad, zoom out a lot to see user's location in the ocean :p
 
 class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,12 +24,16 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var hackerData : JSON?
     let HackerCellIdentifier = "DetailsHackerCellIdentifier"
     let HackerDetailIdentifier = "DetailsHackerItemIdentifier"
-    let HackerSkillsCell = "HackerSkillsCell"
+    let HackerSkillsCellIdentifier = "HackerSkillsCellIdentifier"
+    let HackerMapCellIdentifier = "HackerMapCellIdentifier"
+    
+    let pin = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        detailsTable.register(UINib(nibName: "BigHackerCell", bundle: nil), forCellReuseIdentifier: "DetailsHackerCellIdentifier")
+        detailsTable.register(UINib(nibName: "BigHackerCell", bundle: nil), forCellReuseIdentifier: HackerCellIdentifier)
+        detailsTable.register(UINib(nibName: "HackerMapCell", bundle: nil), forCellReuseIdentifier: HackerMapCellIdentifier)
         detailsTable.tableFooterView = UIView()
     }
 
@@ -40,7 +47,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return hackerData == nil ? 0 : 4
+        return hackerData == nil ? 0 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +69,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
             return cell
-        } else if indexPath.section < 3 {
+        } else if indexPath.section < 3 { // Phone, email
             let cell = tableView.dequeueReusableCell(withIdentifier: HackerDetailIdentifier)
             
             if let hackerData = hackerData {
@@ -78,11 +85,11 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             return cell!
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 3 { // Skills
             
             var yoffset : CGFloat = skillPaddingTop
             
-            if let cell = tableView.dequeueReusableCell(withIdentifier: HackerSkillsCell), let hackerData = hackerData {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: HackerSkillsCellIdentifier), let hackerData = hackerData {
                 
                 for subview in cell.subviews.enumerated().reversed() {
                     if let s = subview.element as? UILabel {
@@ -130,6 +137,20 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 return cell
             }
+        } else if indexPath.section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HackerMapCellIdentifier, for: indexPath) as! HackerMapCell
+            
+            cell.map.removeAnnotation(pin)
+            
+            if let hackerData = hackerData {
+                pin.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(hackerData["latitude"].numberValue), longitude: CLLocationDegrees(hackerData["longitude"].numberValue))
+                let coordinateRegion = MKCoordinateRegionMakeWithDistance(pin.coordinate,
+                                                                          regionRadius * 2.0, regionRadius * 2.0)
+                cell.map.setRegion(coordinateRegion, animated: true)
+                cell.map.addAnnotation(pin)
+            }
+            
+            return cell
         }
         
         return UITableViewCell()
@@ -143,7 +164,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section > 0 && section < 4 {
+        if section > 0 && section < 5 {
             return 13
         }
         return 0
@@ -157,6 +178,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
             return "Email"
         case 3:
             return "Skills"
+        case 4:
+            return "Location"
         default:
             break
         }
@@ -187,6 +210,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
             } else {
                 return 0
             }
+        } else if indexPath.section == 4 {
+            return 250
         }
         return 0
     }

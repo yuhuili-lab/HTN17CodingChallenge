@@ -14,6 +14,8 @@
 		188C3B7F1E459118001210CE /* BigHackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C3B7E1E459118001210CE /* BigHackerCell.swift */; };
 		188C3B811E459275001210CE /* BigHackerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188C3B801E459275001210CE /* BigHackerCell.xib */; };
 		188C3B831E465907001210CE /* SkillsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C3B821E465907001210CE /* SkillsManager.swift */; };
+		188C3B861E46AD78001210CE /* HackerMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C3B841E46AD78001210CE /* HackerMapCell.swift */; };
+		188C3B871E46AD78001210CE /* HackerMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188C3B851E46AD78001210CE /* HackerMapCell.xib */; };
 		18ED2A1A1E45790000CE2054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A191E45790000CE2054 /* AppDelegate.swift */; };
 		18ED2A1C1E45790000CE2054 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED2A1B1E45790000CE2054 /* ViewController.swift */; };
 		18ED2A1F1E45790000CE2054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18ED2A1D1E45790000CE2054 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 		188C3B7E1E459118001210CE /* BigHackerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigHackerCell.swift; sourceTree = "<group>"; };
 		188C3B801E459275001210CE /* BigHackerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigHackerCell.xib; sourceTree = "<group>"; };
 		188C3B821E465907001210CE /* SkillsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsManager.swift; sourceTree = "<group>"; };
+		188C3B841E46AD78001210CE /* HackerMapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerMapCell.swift; sourceTree = "<group>"; };
+		188C3B851E46AD78001210CE /* HackerMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HackerMapCell.xib; sourceTree = "<group>"; };
 		18ED2A161E45790000CE2054 /* HTN17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTN17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED2A191E45790000CE2054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18ED2A1B1E45790000CE2054 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,8 +85,10 @@
 				18ED2A1D1E45790000CE2054 /* Main.storyboard */,
 				1806133D1E45846F00D49747 /* HackerCell.xib */,
 				188C3B801E459275001210CE /* BigHackerCell.xib */,
+				188C3B851E46AD78001210CE /* HackerMapCell.xib */,
 				1806133F1E45849A00D49747 /* HackerCell.swift */,
 				188C3B7E1E459118001210CE /* BigHackerCell.swift */,
+				188C3B841E46AD78001210CE /* HackerMapCell.swift */,
 				18ED2A2D1E457AE400CE2054 /* DataManager.swift */,
 				188C3B821E465907001210CE /* SkillsManager.swift */,
 				18ED2A201E45790000CE2054 /* Assets.xcassets */,
@@ -172,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188C3B871E46AD78001210CE /* HackerMapCell.xib in Resources */,
 				18ED2A241E45790000CE2054 /* LaunchScreen.storyboard in Resources */,
 				188C3B811E459275001210CE /* BigHackerCell.xib in Resources */,
 				1806133E1E45846F00D49747 /* HackerCell.xib in Resources */,
@@ -237,6 +244,7 @@
 			files = (
 				18ED2A1C1E45790000CE2054 /* ViewController.swift in Sources */,
 				188C3B831E465907001210CE /* SkillsManager.swift in Sources */,
+				188C3B861E46AD78001210CE /* HackerMapCell.swift in Sources */,
 				180613401E45849A00D49747 /* HackerCell.swift in Sources */,
 				18ED2A2E1E457AE400CE2054 /* DataManager.swift in Sources */,
 				18ED2A1A1E45790000CE2054 /* AppDelegate.swift in Sources */,
